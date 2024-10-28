@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{62901090-aed0-483c-8bb5-ff6018cf28c8}</ProjectGuid>
+    <RootNamespace>ordersystem</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>imgui\includes;Resources\include;$(IncludePath)</IncludePath>
+    <LibraryPath>Resources\bin;Resources\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>imgui\includes;Resources\include;$(IncludePath)</IncludePath>
+    <LibraryPath>Resources\bin;Resources\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>imgui\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxgi.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Resources\bin;Resources\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>imgui\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxgi.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>Resources\bin;Resources\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="API\auth.hpp" />
+    <ClInclude Include="API\buy.hpp" />
+    <ClInclude Include="API\cancel_order.hpp" />
+    <ClInclude Include="API\get_open_order.hpp" />
+    <ClInclude Include="API\get_position.hpp" />
+    <ClInclude Include="API\InstrumentListFetcher.hpp" />
+    <ClInclude Include="API\instruments_list.hpp" />
+    <ClInclude Include="API\modify_order.hpp" />
+    <ClInclude Include="API\order_book.hpp" />
+    <ClInclude Include="API\utils\performRequest.hpp" />
+    <ClInclude Include="imgui\includes\imconfig.h" />
+    <ClInclude Include="imgui\includes\imgui.h" />
+    <ClInclude Include="imgui\includes\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\includes\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\includes\imgui_internal.h" />
+    <ClInclude Include="imgui\includes\imstb_rectpack.h" />
+    <ClInclude Include="imgui\includes\imstb_textedit.h" />
+    <ClInclude Include="imgui\includes\imstb_truetype.h" />
+    <ClInclude Include="imgui\Theme\ImTheme.hpp" />
+    <ClInclude Include="Overlay\Renderer.hpp" />
+    <ClInclude Include="Resources\include\cpprest\astreambuf.h" />
+    <ClInclude Include="Resources\include\cpprest\asyncrt_utils.h" />
+    <ClInclude Include="Resources\include\cpprest\base_uri.h" />
+    <ClInclude Include="Resources\include\cpprest\containerstream.h" />
+    <ClInclude Include="Resources\include\cpprest\details\basic_types.h" />
+    <ClInclude Include="Resources\include\cpprest\details\cpprest_compat.h" />
+    <ClInclude Include="Resources\include\cpprest\details\fileio.h" />
+    <ClInclude Include="Resources\include\cpprest\details\http_helpers.h" />
+    <ClInclude Include="Resources\include\cpprest\details\http_server.h" />
+    <ClInclude Include="Resources\include\cpprest\details\http_server_api.h" />
+    <ClInclude Include="Resources\include\cpprest\details\nosal.h" />
+    <ClInclude Include="Resources\include\cpprest\details\resource.h" />
+    <ClInclude Include="Resources\include\cpprest\details\SafeInt3.hpp" />
+    <ClInclude Include="Resources\include\cpprest\details\web_utilities.h" />
+    <ClInclude Include="Resources\include\cpprest\filestream.h" />
+    <ClInclude Include="Resources\include\cpprest\http_client.h" />
+    <ClInclude Include="Resources\include\cpprest\http_compression.h" />
+    <ClInclude Include="Resources\include\cpprest\http_headers.h" />
+    <ClInclude Include="Resources\include\cpprest\http_listener.h" />
+    <ClInclude Include="Resources\include\cpprest\http_msg.h" />
+    <ClInclude Include="Resources\include\cpprest\interopstream.h" />
+    <ClInclude Include="Resources\include\cpprest\json.h" />
+    <ClInclude Include="Resources\include\cpprest\oauth1.h" />
+    <ClInclude Include="Resources\include\cpprest\oauth2.h" />
+    <ClInclude Include="Resources\include\cpprest\producerconsumerstream.h" />
+    <ClInclude Include="Resources\include\cpprest\rawptrstream.h" />
+    <ClInclude Include="Resources\include\cpprest\streams.h" />
+    <ClInclude Include="Resources\include\cpprest\uri.h" />
+    <ClInclude Include="Resources\include\cpprest\uri_builder.h" />
+    <ClInclude Include="Resources\include\cpprest\version.h" />
+    <ClInclude Include="Resources\include\cpprest\ws_client.h" />
+    <ClInclude Include="Resources\include\cpprest\ws_msg.h" />
+    <ClInclude Include="Resources\include\curl\curl.h" />
+    <ClInclude Include="Resources\include\curl\curlver.h" />
+    <ClInclude Include="Resources\include\curl\easy.h" />
+    <ClInclude Include="Resources\include\curl\header.h" />
+    <ClInclude Include="Resources\include\curl\mprintf.h" />
+    <ClInclude Include="Resources\include\curl\multi.h" />
+    <ClInclude Include="Resources\include\curl\options.h" />
+    <ClInclude Include="Resources\include\curl\stdcheaders.h" />
+    <ClInclude Include="Resources\include\curl\system.h" />
+    <ClInclude Include="Resources\include\curl\typecheck-gcc.h" />
+    <ClInclude Include="Resources\include\curl\urlapi.h" />
+    <ClInclude Include="Resources\include\curl\websockets.h" />
+    <ClInclude Include="Resources\include\nlohmann\adl_serializer.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\byte_container_with_subtype.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\abi_macros.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\conversions\from_json.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\conversions\to_chars.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\conversions\to_json.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\exceptions.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\hash.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\binary_reader.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\input_adapters.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\json_sax.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\lexer.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\parser.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\input\position_t.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\internal_iterator.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\iteration_proxy.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\iterator_traits.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\iter_impl.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\json_reverse_iterator.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\iterators\primitive_iterator.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\json_custom_base_class.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\json_pointer.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\json_ref.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\macro_scope.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\macro_unscope.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\call_std\begin.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\call_std\end.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\cpp_future.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\detected.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\identity_tag.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\is_sax.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\std_fs.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\type_traits.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\meta\void_t.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\output\binary_writer.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\output\output_adapters.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\output\serializer.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\string_concat.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\string_escape.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\detail\value_t.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\json.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\json_fwd.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\ordered_map.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\thirdparty\hedley\hedley.hpp" />
+    <ClInclude Include="Resources\include\nlohmann\thirdparty\hedley\hedley_undef.hpp" />
+    <ClInclude Include="Resources\include\pplx\pplx.h" />
+    <ClInclude Include="Resources\include\pplx\pplxcancellation_token.h" />
+    <ClInclude Include="Resources\include\pplx\pplxconv.h" />
+    <ClInclude Include="Resources\include\pplx\pplxinterface.h" />
+    <ClInclude Include="Resources\include\pplx\pplxlinux.h" />
+    <ClInclude Include="Resources\include\pplx\pplxtasks.h" />
+    <ClInclude Include="Resources\include\pplx\pplxwin.h" />
+    <ClInclude Include="Resources\include\zconf.h" />
+    <ClInclude Include="Resources\include\zlib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="API\test.hpp" />
+    <ClCompile Include="imgui\fonts\Roboto-Medium.cpp" />
+    <ClCompile Include="imgui\fonts\Roboto-Medium.hpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imgui\imgui.ini" />
+    <None Include="Resources\bin\brotlicommon.dll" />
+    <None Include="Resources\bin\brotlicommon.pdb" />
+    <None Include="Resources\bin\brotlidec.dll" />
+    <None Include="Resources\bin\brotlidec.pdb" />
+    <None Include="Resources\bin\brotlienc.dll" />
+    <None Include="Resources\bin\brotlienc.pdb" />
+    <None Include="Resources\bin\cpprest_2_10.dll" />
+    <None Include="Resources\bin\cpprest_2_10.pdb" />
+    <None Include="Resources\bin\libcurl.dll" />
+    <None Include="Resources\bin\libcurl.pdb" />
+    <None Include="Resources\bin\zlib.pdb" />
+    <None Include="Resources\bin\zlib1.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Resources\lib\brotlicommon.lib" />
+    <Library Include="Resources\lib\brotlidec.lib" />
+    <Library Include="Resources\lib\brotlienc.lib" />
+    <Library Include="Resources\lib\cpprest_2_10.lib" />
+    <Library Include="Resources\lib\libcurl.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
