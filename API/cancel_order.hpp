@@ -31,18 +31,17 @@ public:
     CancelOrder(const std::string& token)
         : accessToken(token), noOpenOrders(false) {}
 
-    // Function to render the UI
     void Render() 
     {
         ImGui::Begin("Cancel Order", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
         const char* kindItems[5] = { "future", "future_combo", "option", "option_combo", "spot" };
-        static int selectedKind = 0; // Keep track of selected kind
+        static int selectedKind = 0;
         ImGui::Combo("Kind", &selectedKind, kindItems, IM_ARRAYSIZE(kindItems));
 
         const char* typeItems[10] = { "all", "limit", "stop_all", "stop_limit", "stop_market",
                                        "take_all", "take_limit", "take_market", "trailing_all", "trailing_stop" };
-        static int selectedType = 0; // Keep track of selected type
+        static int selectedType = 0;
         ImGui::Combo("Type", &selectedType, typeItems, IM_ARRAYSIZE(typeItems));
 
         // Button to fetch open orders
@@ -50,7 +49,7 @@ public:
             fetchOpenOrders(kindItems[selectedKind], typeItems[selectedType]);
         }
 
-        // Display the order table with checkboxes
+        // Display order table
         displayOrderTableWithCheckbox();
 
         // Show message if there are no open orders
@@ -60,19 +59,18 @@ public:
             ImGui::PopStyleColor();
         }
 
-        // Button to cancel the selected order
+        // Cancel button
         if (ImGui::Button("Cancel Selected Order") && !selectedOrderId.empty()) {
             std::thread(&CancelOrder::cancelSelectedOrder, this).detach();
         }
 
         if (isLoading) {
-            // Show loading animation (simple rotating lines)
             ImGui::Text("Loading...");
             ImGui::SameLine();
             Renderer::Spinner("##spinner", 15.0f, 6.0f, ImGui::GetColorU32(ImGuiCol_ButtonHovered));
         }
 
-        // Show cancellation message if applicable
+        // cancellation message
         if (showCancellationMessage) {
             ImGui::Text("Order %s has been cancelled successfully.", selectedOrderId.c_str());
         }
@@ -84,7 +82,6 @@ public:
     }
 
 private:
-    // Function to fetch open orders
     void fetchOpenOrders(const char* kind, const char* type) 
     {
         isLoading = true;
@@ -99,11 +96,9 @@ private:
             {"id", 33}
         };
 
-        // Make the API call using the performRequest function
         std::string url = "https://test.deribit.com/api/v2/private/get_open_orders";
         std::string responseBuffer = request.performRequest(url, payload.dump(), accessToken);
 
-        // Parse the JSON response
         try {
             openOrderResponse = json::parse(responseBuffer);
         }
@@ -111,7 +106,7 @@ private:
             std::cerr << "Error parsing JSON: " << e.what() << std::endl;
         }
 
-        // Check if the API response contains errors
+        // Response contains errors
         if (openOrderResponse.contains("error")) {
             std::cerr << "Error fetching open orders: " << openOrderResponse["error"].dump() << std::endl;
             noOpenOrders = true; // Set to true if there’s an error
@@ -119,12 +114,10 @@ private:
             return; // Return early if there's an error
         }
 
-        // Ensure the response has a valid structure
         if (openOrderResponse.contains("result") && openOrderResponse["result"].is_array()) {
-            // Check for empty result array
             if (openOrderResponse["result"].empty()) {
                 std::cout << "No open orders found." << std::endl;
-                noOpenOrders = true; // Set flag to indicate no open orders
+                noOpenOrders = true;
                 isLoading = false;
             }
             else {
@@ -146,7 +139,7 @@ private:
 
         // Check if open orders exist before displaying
         if (openOrderResponse.contains("result") && openOrderResponse["result"].is_array() && !noOpenOrders) {
-            ImGui::Columns(6, "orderTable"); // 6 columns for displaying order attributes
+            ImGui::Columns(6, "orderTable"); // 6 columns
 
             ImGui::Text("Select"); ImGui::NextColumn();
             ImGui::Text("Order ID"); ImGui::NextColumn();
@@ -195,11 +188,9 @@ private:
             {"id", 36}
         };
 
-        // Make the API call using the performRequest function
         std::string url = "https://test.deribit.com/api/v2/private/cancel";
         std::string responseBuffer = request.performRequest(url, payload.dump(), accessToken);
 
-        // Parse the JSON response
         try {
             cancelResponse = json::parse(responseBuffer);
         }
@@ -207,23 +198,23 @@ private:
             std::cerr << "Error parsing JSON: " << e.what() << std::endl;
         }
 
-        // Check if the API response contains errors
+        // Response contains errors
         if (cancelResponse.contains("error")) {
             std::cerr << "Error cancelling order: " << cancelResponse["error"].dump() << std::endl;
-            showCancellationMessage = false; // Hide message if there's an error
-            cancellationError = true;         // Show cancellation error
-            return; // Return early if there's an error
+            showCancellationMessage = false;
+            cancellationError = true;
+            return;
         }
 
-        // Check if cancellation was successful
+        // cancellation was successful
         if (cancelResponse.contains("result") && cancelResponse["result"]["order_state"] == "cancelled") {
-            showCancellationMessage = true; // Show message if cancellation is successful
-            cancellationError = false;       // Reset cancellation error flag
+            showCancellationMessage = true;
+            cancellationError = false;
         }
         else {
             std::cerr << "Failed to cancel order: " << cancelResponse.dump() << std::endl;
-            showCancellationMessage = false; // Hide message if cancellation failed
-            cancellationError = true;        // Show cancellation error
+            showCancellationMessage = false;
+            cancellationError = true;
         }
 
         isLoading = false;

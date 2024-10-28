@@ -24,14 +24,13 @@ private:
 public:
     GetPosition(const std::string& token)
         : accessToken(token) {
-        loadInstruments();  // Fetch instrument list on initialization
+        loadInstruments();
     }
 
     void Render() 
     {
         ImGui::Begin("Get Position", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-        // Render the dropdown menu for instrument selection
         if (ImGui::BeginCombo("Instrument", selectedInstrument.empty() ? "Select an instrument" : selectedInstrument.c_str())) {
             for (const auto& instrument : instrumentNames) {
                 bool isSelected = (selectedInstrument == instrument);
@@ -45,19 +44,18 @@ public:
             ImGui::EndCombo();
         }
 
-        // Button to fetch position
+        // Fetch position button
         if (ImGui::Button("Get Position") && !selectedInstrument.empty() && !isLoading) {
             std::thread(&GetPosition::fetchPosition, this).detach();
         }
 
         if (isLoading) {
-            // Show loading animation
             ImGui::Text("Loading...");
             ImGui::SameLine();
             Renderer::Spinner("##spinner", 15.0f, 6.0f, ImGui::GetColorU32(ImGuiCol_ButtonHovered));
         }
 
-        // Show response in a popup window if available
+        // Response in a popup window
         if (showResponsePopup) {
             ImGui::OpenPopup("Position Response");
             if (ImGui::BeginPopupModal("Position Response", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
@@ -87,7 +85,6 @@ private:
         isLoading = true;
         std::string url = "https://test.deribit.com/api/v2/private/get_position";
 
-        // Create JSON payload with selected instrument
         json payload = {
             {"jsonrpc", "2.0"},
             {"id", 8},
@@ -96,7 +93,6 @@ private:
         };
         std::string payloadStr = payload.dump();
 
-        // Perform the request with authorization header
         Request request;
         std::string responseStr = request.performRequest(url, payloadStr, accessToken);
 

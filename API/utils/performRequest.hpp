@@ -30,7 +30,6 @@ public:
             struct curl_slist* headers = nullptr;
             headers = curl_slist_append(headers, "Content-Type: application/json");
 
-            // Adding the Authorization header if a token is provided
             if (!token.empty()) {
                 std::string authHeader = "Authorization: Bearer " + token;
                 headers = curl_slist_append(headers, authHeader.c_str());

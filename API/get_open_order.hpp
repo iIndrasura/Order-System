@@ -39,21 +39,18 @@ public:
         : accessToken(token) {
     }
 
-    // Render function to display dropdowns, API call button, and table with checkbox for selecting order ID
     void Render()
     {
         ImGui::Begin("Open Orders", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-        // Dropdowns for "kind" and "type"
         ImGui::Combo("Kind", &selectedKind, kindItems, IM_ARRAYSIZE(kindItems));
         ImGui::Combo("Type", &selectedType, typeItems, IM_ARRAYSIZE(typeItems));
 
         if (ImGui::Button("Get Open Orders")) {
             showResponseWindow = false;
             closeWindow = true;
-            selectedIndex = -1;  // Reset selected checkbox
+            selectedIndex = -1;
 
-            // Trigger the API call in a separate thread when button is clicked
             std::thread(&GetOpenOrder::fetchOpenOrders, this).detach();
         }
 
@@ -73,7 +70,7 @@ public:
         ImGui::End();
     }
 
-    // Function to retrieve the selected order ID for use in cancel/edit actions
+    // Retrieve the selected order ID
     std::string getSelectedOrderId() const {
         return selectedOrderId;
     }
@@ -116,13 +113,12 @@ private:
         }
     }
 
-    // Displays open orders in a table format with checkboxes for selecting order ID
     void displayOrderTableWithCheckbox()
     {
         ImGui::Text("Select an order to get the Order ID");
 
         if (apiResponse.contains("result") && apiResponse["result"].is_array()) {
-            ImGui::Columns(6, "orderTable"); // 6 columns to include checkbox and order_id display
+            ImGui::Columns(6, "orderTable"); // 6 columns
 
             ImGui::Text("Select"); ImGui::NextColumn();
             ImGui::Text("Order ID"); ImGui::NextColumn();
@@ -157,7 +153,7 @@ private:
         }
     }
 
-    // Displays open orders in a simple table format (for display only)
+    // Displays open orders in a simple table format
     void displayOrderTableSimple()
     {
         if (apiResponse.contains("result") && apiResponse["result"].is_array()) {

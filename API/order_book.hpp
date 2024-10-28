@@ -29,8 +29,8 @@ public:
         loadInstruments();
     }
 
-    void Render() {
-        // Create a new ImGui window
+    void Render() 
+    {
         ImGui::Begin("Order Book", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
         // Instrument dropdown
@@ -74,7 +74,7 @@ public:
             ImGui::Begin("API Response", &showResponseWindow);
             ImGui::Text("Response from Deribit API:");
             ImGui::Separator();
-            std::string responseStr = jsonResponse.dump(4);  // Format response nicely
+            std::string responseStr = jsonResponse.dump(4);
             ImGui::TextWrapped("%s", responseStr.c_str());
             ImGui::End();
         }

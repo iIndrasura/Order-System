@@ -25,7 +25,6 @@ private:
     std::string selectedInstrument;
     std::atomic<bool> isLoading = false;
 
-    // Variables for displaying messages
     std::string errorMessage;
     std::string successMessage;
 
@@ -34,7 +33,6 @@ public:
         loadInstruments();
     }
 
-    // Rendering function for the order placement UI
     void Render() {
         ImGui::Begin("Place Order", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
@@ -81,12 +79,12 @@ public:
             label = labelBuffer;
         }
 
-        // Show Price input if type requires it
+        // Price input
         if (show_price) {
             ImGui::InputFloat("Price", &price);
         }
 
-        // Button to submit the order
+        // Submit Button
         if (ImGui::Button("Place Order")) {
             errorMessage.clear();
             successMessage.clear();
@@ -98,15 +96,16 @@ public:
             }
         }
 
-        // Display success or error messages
+        // Display error messages
         if (!errorMessage.empty()) {
-            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f)); // Red color for error
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
             ImGui::Text("%s", errorMessage.c_str());
             ImGui::PopStyleColor();
         }
 
+        // Display success message
         if (!successMessage.empty()) {
-            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f)); // Green color for success
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
             ImGui::Text("%s", successMessage.c_str());
             ImGui::PopStyleColor();
         }
@@ -137,10 +136,10 @@ private:
         return true;
     }
 
-    // Function to create the payload and send the order request
-    void sendOrderRequest() {
+    void sendOrderRequest() 
+    {
         isLoading = true;
-        // Create JSON payload
+    
         nlohmann::json payload = {
             {"method", "private/buy"},
             {"jsonrpc", "2.0"},
@@ -157,7 +156,6 @@ private:
         if (contracts > 0) payload["params"]["contracts"] = contracts;
         if (show_price) payload["params"]["price"] = price;
 
-        // Make the API request
         std::string url = "https://test.deribit.com/api/v2/private/buy";
         auto response = request.performRequest(url, payload.dump(), accessToken);
 

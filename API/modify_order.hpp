@@ -78,7 +78,6 @@ public:
         }
 
         if (isLoading) {
-            // Show loading animation (simple rotating lines)
             ImGui::Text("Loading...");
             ImGui::SameLine();
             Renderer::Spinner("##spinner", 15.0f, 6.0f, ImGui::GetColorU32(ImGuiCol_ButtonHovered));

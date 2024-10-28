@@ -27,29 +27,24 @@ public:
         ImGui::Begin("Deribit API Test", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
         if (ImGui::Button("Test API Connection")) {
-            // Reset flags to ensure window reappears after closing
             showResponseWindow = false;
             closeWindow = true;
 
-            // Trigger the API call in a separate thread when button is clicked
             std::thread(&TestAPI::fetchApiResponse, this).detach();
         }
 
         if (isLoading) {
-            // Show loading animation (simple rotating lines)
             ImGui::Text("Loading...");
             ImGui::SameLine();
             Renderer::Spinner("##spinner", 15.0f, 6.0f, ImGui::GetColorU32(ImGuiCol_ButtonHovered));
         }
 
-        // If the API call is done and we have a response, show a new window with the result
         if (showResponseWindow && closeWindow) {
             ImGui::Begin("API Response", &closeWindow);
             ImGui::Text("Response from Deribit API:");
             ImGui::Separator();
 
-            // Display the formatted JSON response
-            std::string responseStr = apiResponse.dump(4);  // Format the response nicely
+            std::string responseStr = apiResponse.dump(4);
             ImGui::TextWrapped("%s", responseStr.c_str());
 
             ImGui::End();
@@ -59,12 +54,10 @@ public:
     }
 
 private:
-    // Function to handle the API call in a separate thread
     void fetchApiResponse() 
     {
         isLoading = true;
 
-        // Create JSON payload
         json payload = {
             {"jsonrpc", "2.0"},
             {"method", "public/test"},
@@ -72,11 +65,9 @@ private:
             {"id", 3}
         };
 
-        // Perform the request
         std::string url = "https://test.deribit.com/api/v2/public/test";
         std::string responseBuffer = request.performRequest(url, payload.dump());
 
-        // Parse response
         try {
             apiResponse = json::parse(responseBuffer);
         }
